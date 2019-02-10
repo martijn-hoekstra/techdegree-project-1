@@ -1,55 +1,62 @@
-/******************************************
-Treehouse Techdegree:
-FSJS project 1 - A Random Quote Generator
-******************************************/
+var quotes = [
+    {
+      quote: 'Controlling complexity is the essence of computer programming.',
+      source: 'Brian Kernigan',
+      year: '1976',
+      citation: 'Software Tools, p. 319'
+    },
+    {
+      quote: 'The best thing about a boolean is even if you are wrong, you are only off by a bit.',
+      source: 'Anonymous'
+    },
+    {
+      quote: 'If debugging is the process of removing bugs, then programming must be the process of putting them in.',
+      source: 'Edsger W. Dijkstra'
+    },
+    {
+      quote: 'Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.',
+      source: 'John F. Woods',
+      year: '1991',
+      citation: 'Google Groups'
+    },
+    {
+      quote: 'The function of good software is to make the complex appear to be simple.',
+      source: 'Grady Booch',
+      year: '2010',
+      citation: 'Frank H. P. Fitzek et al. Qt for Symbian. p. xv'
+    },
+    {
+      quote: 'Measuring programming progress by lines of code is like measuring aircraft building progress by weight.',
+      source: 'Bill Gates'
+    },
+    {
+      quote: 'A different error message! Finally some progress!',
+      source: 'bakablah (username)',
+      year: '2016',
+      citation: 'Devrant.com'
+    }
+];
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+function getRandomQuote() {
+  var randomNumber = Math.floor(Math.random() * Math.floor(quotes.length));
+  return quotes[randomNumber];
+}
 
+function printQuote() {
+  var randomQuote = getRandomQuote();
+  var stringOfQuoteProperties = '';
+  stringOfQuoteProperties += '<p class="quote">' + randomQuote.quote + '</p>';
+  stringOfQuoteProperties += '<p class="source">' + randomQuote.source;
+  if(randomQuote.citation && randomQuote.citation !== '') {
+    stringOfQuoteProperties += '<span class="citation">' + randomQuote.citation + '</span>';
+  }
+  if(randomQuote.year && randomQuote.year !== '') {
+    stringOfQuoteProperties += '<span class="year">' + randomQuote.year + '</span>';
+  }
+  stringOfQuoteProperties += '</p>';
+  document.getElementById('quote-box').innerHTML = stringOfQuoteProperties;
+}
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-
-  Recommended: 
-    - Add at least one `year` and/or `citation` property to at least one 
-      quote object.
-***/
-
-
-
-
-/***
-  Create the `getRandomQuote` function to:
-   - generate a random number 
-   - use the random number to `return` a random quote object from the 
-     `quotes` array.
-***/
-
-
-
-
-/***
-  Create the `printQuote` function to: 
-   - call the `getRandomQuote` function and assign it to a variable.
-   - use the properties of the quote object stored in the variable to 
-     create your HTML string.
-   - use conditionals to make sure the optional properties exist before 
-     they are added to the HTML string.
-   - set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
-
-
-
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
+setInterval(printQuote,10000);
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
